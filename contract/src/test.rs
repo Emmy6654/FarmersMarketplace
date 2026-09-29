@@ -482,7 +482,8 @@ fn test_partial_refund_with_valid_amount_succeeds() {
 
     let record = client.get_escrow(&order_id).unwrap();
     assert_eq!(record.status, EscrowStatus::Refunded);
-    assert_eq!(record.amount, 400_000);
+    assert_eq!(record.amount, 1_000_000);
+    assert_eq!(client.refunded_amount(&order_id).unwrap(), Some(400_000));
 }
 
 #[test]
