@@ -431,6 +431,8 @@ impl EscrowContract {
             .get(&key)
             .ok_or(EscrowError::NotFound)?;
 
+        record.buyer.require_auth();
+
         if record.status != EscrowStatus::Active {
             return Err(EscrowError::AlreadySettled);
         }
